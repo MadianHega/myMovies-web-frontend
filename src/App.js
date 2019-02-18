@@ -5,7 +5,7 @@ import {createStore, combineReducers}  from 'redux';
 import ModalReducer from './Reducers/Modal.reducer';
 import Navbar from './Components/Navbar'
 import CardMovie from './Components/Card'
-import ModalSign from './Components/ModalSign'
+import ModalConnect from './Components/ModalConnect'
 
 const store = createStore(combineReducers({ModalReducer}));
 
@@ -40,7 +40,7 @@ class App extends Component {
       <Provider store={store} className="App container-fluid">
         <div className="row flex flex-row justify-center">
           <Navbar />
-          <ModalSign />
+          <ModalConnect />
           {movieList}
           {this.state.loading}
         </div>
