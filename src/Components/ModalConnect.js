@@ -9,13 +9,20 @@ class ModalPage extends Component {
     super(props);
     this.state = {
       tab: false,
-      SignUpName: "",
-      SignUpEmail: "",
-      SignInName: "",
-      SignInEmail:"",
-      SignInPassword:""
+      signUpName: "",
+      signUpEmail: "",
+      signUpPassword: "",
+      signInName: "",
+      signInEmail:"",
+      signInPassword:"",
+      emailExist: false,
+      nameError: false,
+      passwordError: false,
+      signUpValidate: false,
+      signUpError: false,
     };
   }
+
   // False tab affiche SignIn / True tab affiche SignUp
   handleTab = (boolean) => {
     this.setState({tab: boolean})
@@ -27,25 +34,78 @@ class ModalPage extends Component {
     });
   }
 
-  SignIn = () => {
+  signIn = () => {
 
   }
 
-  SignUp = () => {
+  signUp = (event) => {
+    var ctx = this;
+    fetch("http://127.0.0.1:3000/signup", {
+        method: 'POST',
+        headers: {'Content-Type':'application/x-www-form-urlencoded'},
+        body: "pseudo=" + ctx.state.signUpName + "&email=" + ctx.state.signUpEmail + "&password=" + ctx.state.signUpPassword
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
 
+         if(data.pseudoValid === false){
+           console.log("pseudo");
+            this.setState({
+              nameError: true,
+              emailExist: false,
+              passwordError: false,
+              signUpError: false,
+            });
+          }
+           else if(data.isExist === true){
+             console.log("isexist");
+             this.setState({
+               emailExist: true,
+               nameError: false,
+               passwordError: false,
+               signUpError: false,
+             });
+           }
+           else if(data.passwordValid === false){
+             console.log("password");
+               this.setState({
+                 passwordError: true,
+                 nameError: false,
+                 emailExist: false,
+                 signUpError: false,
+               });
+            }
+           else if(data.signup === true){
+             console.log("signup");
+             this.setState({
+               signUpValidate: true
+             });
+           }
+           else{
+             console.log("else");
+             this.setState({
+               signUpError: true,
+               emailExist: false,
+               nameError: false,
+               passwordError: false,
+             });
+           }
+      })
+      .catch((error) => console.log("request failed :", error))
   }
 
   render() {
     // Configure les props à envoyer aux Inputs signIn
     let signIn = [
-      {content: "Email :", type: "email", name: "SignInEmail", autoComplete: "email"},
-      {content: "Password :", type: "password", name: "SignInPassword", autoComplete: "current-password"}
+      {content: "Email :", type: "email", name: "signInEmail", autoComplete: "email"},
+      {content: "Password :", type: "password", name: "signInPassword", autoComplete: "current-password"}
     ]
     // Configure les props à envoyer aux Inputs signUp
     let signUp = [
-      {content: "Prénom :", type: "text", name: "SignUpName", autoComplete: "username"},
-      {content: "Email :", type: "email", name: "SignUpEmail", autoComplete: "email"},
-      {content: "Password :", type: "password", name: "SignUpPassword", autoComplete: "new-password"},
+      {content: "Prénom :", type: "text", name: "signUpName", autoComplete: "username"},
+      {content: "Email :", type: "email", name: "signUpEmail", autoComplete: "email"},
+      {content: "Password :", type: "password", name: "signUpPassword", autoComplete: "new-password"},
     ]
     let signInList = signIn.map((item, index) => {
       return <Input key={index} content={item.content} type={item.type} name={item.name} autoComplete={item.autoComplete} handleChange={this.handleChange}/>
@@ -70,11 +130,14 @@ class ModalPage extends Component {
                 <span onClick={() => this.handleTab(true)}>S'inscrire</span>
               </div>
               <div>
-                {
-                  this.state.tab
-                  ? (<form className="flex flex-column">{signUpList}</form>)
-                  : (<form className="flex flex-column">{signInList}</form>)
-                }
+
+                <div>
+                  {
+                    this.state.tab
+                    ? (<form className="flex flex-column">{signUpList}</form>)
+                    : (<form className="flex flex-column">{signInList}</form>)
+                  }
+                </div>
               </div>
               <div>
                 {
