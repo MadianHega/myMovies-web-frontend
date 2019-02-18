@@ -72,8 +72,8 @@ class ModalPage extends Component {
               <div>
                 {
                   this.state.tab
-                  ? (<form>{signUpList}</form>)
-                  : (<form>{signInList}</form>)
+                  ? (<form className="flex flex-column">{signUpList}</form>)
+                  : (<form className="flex flex-column">{signInList}</form>)
                 }
               </div>
               <div>

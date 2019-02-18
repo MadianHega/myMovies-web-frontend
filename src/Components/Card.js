@@ -24,7 +24,7 @@ class Card extends Component {
     }
     return (
       <div id="card"className="col-6 col-lg-3">
-        <img src={this.props.img} className="img" alt="affiche du film" />
+        <img src={this.props.img} className="img full-width" alt="affiche du film" />
         <div className="card-body">
           <h5 className="card-title">
             <FontAwesomeIcon icon={faHeart} className={classHeart.join(" ")} onClick={() => this.handleClick(this.props.id)}/>
