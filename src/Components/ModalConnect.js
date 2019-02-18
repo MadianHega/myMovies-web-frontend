@@ -23,7 +23,14 @@ class ModalPage extends Component {
     };
   }
 
-  // False tab affiche SignIn / True tab affiche SignUp
+
+  // componentDidMount(event){
+  //   this.setState({
+  //     [event.target.name]: event.target.value
+  //   });
+  // }
+
+  // Tab à False affiche SignIn / Tab à True affiche SignUp
   handleTab = (boolean) => {
     this.setState({tab: boolean})
   }
@@ -38,7 +45,12 @@ class ModalPage extends Component {
 
   }
 
+
   signUp = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+
     var ctx = this;
     fetch("http://127.0.0.1:3000/signup", {
         method: 'POST',
@@ -93,9 +105,12 @@ class ModalPage extends Component {
            }
       })
       .catch((error) => console.log("request failed :", error))
+      event.preventDefault();
   }
 
   render() {
+    console.log("name",this.state.signUpName);
+    console.log("email", this.state.signUpEmail);
     // Configure les props à envoyer aux Inputs signIn
     let signIn = [
       {content: "Email :", type: "email", name: "signInEmail", autoComplete: "email"},
