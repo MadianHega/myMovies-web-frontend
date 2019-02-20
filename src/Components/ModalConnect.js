@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 import {connect} from 'react-redux';
 import FormSignUp from './FormSignUp'
+import FormSignIn from './FormSignIn'
+
 
 class ModalPage extends Component {
   constructor(props) {
@@ -18,19 +20,6 @@ class ModalPage extends Component {
 
 
   render() {
-
-    // Configure les props à envoyer aux Inputs signIn
-    let signIn = [
-      {content: "Email :", type: "email", name: "signInEmail", autoComplete: "email"},
-      {content: "Password :", type: "password", name: "signInPassword", autoComplete: "current-password"}
-    ]
-    // Configure les props à envoyer aux Inputs signUp
-    let signUp = [
-      {content: "Prénom :", type: "text", name: "signUpName", autoComplete: "username"},
-      {content: "Email :", type: "email", name: "signUpEmail", autoComplete: "email"},
-      {content: "Password :", type: "password", name: "signUpPassword", autoComplete: "new-password"},
-    ]
-
 
     return (
         <MDBContainer>
@@ -52,7 +41,7 @@ class ModalPage extends Component {
                   {
                     this.state.tab
                     ? (<FormSignUp />)
-                    : (<div></div>)
+                    : (<FormSignIn />)
                   }
                 </div>
               </div>

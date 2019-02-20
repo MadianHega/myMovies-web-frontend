@@ -4,6 +4,7 @@ import Label from './Label.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 
+// Data des Inputs signUp
 const signUp = [
   {title: 'Prénom :', type: 'text', name: 'userName', autoComplete: 'username', errorMessage: "Le prénom doit contenir entre 2 et 20 caractères"},
   {title: 'Email :', type: 'email', name: 'email', autoComplete: 'email', errorMessage: ""},
@@ -138,7 +139,7 @@ class FormSignUp  extends Component {
             : (
               <form onSubmit={this.handleSubmit}>
                 {labelList}
-                <input type="submit" value="Se connecter" className="full-width" />
+                <input type="submit" value="S'inscrire" className="full-width" />
               </form>
             )
         }

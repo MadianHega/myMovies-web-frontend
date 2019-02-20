@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import '../App.css';
 import logo from '../logo.png'
-import Button from './Button'
+import SpanBtn from './SpanBtn'
 
 class Navbar extends Component {
 
@@ -11,14 +11,14 @@ class Navbar extends Component {
   }
 
   render() {
-
+    let loginbtn = "ok"
     return (
       <div id="navbar" className="col-12 flex flex-row">
         <img src={logo} alt="logo du site" />
         <div>MyMovies</div>
-        <Button content={"Liste de film"} handle={this.connection} />
-        <Button content={"Mes films favoris"} handle={this.connection} />
-        <Button content={"connexion"} handle={this.openModal} />
+        <SpanBtn content={"Liste de film"} handle={this.connection} />
+        <SpanBtn content={"Mes films favoris"} handle={this.connection} />
+        <button className={" "} handle={this.openModal}>{loginbtn}</button>
       </div>
     );
   }

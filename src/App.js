@@ -3,11 +3,12 @@ import './App.css';
 import {Provider} from 'react-redux';
 import {createStore, combineReducers}  from 'redux';
 import ModalReducer from './Reducers/Modal.reducer';
+import UserDataReducer from './Reducers/UserData.reducer';
 import Navbar from './Components/Navbar'
 import CardMovie from './Components/Card'
 import ModalConnect from './Components/ModalConnect'
 
-const store = createStore(combineReducers({ModalReducer}));
+const store = createStore(combineReducers({ModalReducer, UserDataReducer}));
 
 class App extends Component {
   constructor(props) {
