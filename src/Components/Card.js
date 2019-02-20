@@ -22,7 +22,7 @@ class Card extends Component {
         fetch('http://127.0.0.1:3000/like', {
             method: 'POST',
             headers: {'Content-Type':'application/x-www-form-urlencoded'},
-            body: 'userId=' + this.props.userLogin.id + '&idMovie=' + id
+            body: 'userId=' + this.props.userLogin.id + '&movieId=' + id
           })
           .then((response) => response.json())
           .then((data) => {
