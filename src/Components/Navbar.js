@@ -18,7 +18,7 @@ class Navbar extends Component {
         <div>MyMovies</div>
         <Button isSpan={true} text={"Accueil"} />
         <Button isSpan={true} text={"Favoris"} />
-        <Button isSpan={false} text={"Connexion"} />
+        <Button isSpan={false} text={"Connexion"} handleClick={this.openModal}/>
       </div>
     );
   }

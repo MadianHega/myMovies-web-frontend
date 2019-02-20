@@ -4,8 +4,7 @@ export default function(dataUser = null, action) {
     dataUserCopy.id = action.DataUser._id
     dataUserCopy.pseudo = action.DataUser.userName
     dataUserCopy.email = action.DataUser.email
-    console.log(dataUserCopy);
-    return dataUser
+    return dataUserCopy
   }
   else{
     return dataUser;

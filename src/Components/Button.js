@@ -24,7 +24,7 @@ class Button extends Component {
         {
           this.state.isSpan
             ?(<span className="">{this.props.text}</span>)
-            :(<button className="">{this.props.text}</button>)
+            :(<button className="" onClick={() => this.props.handleClick()}>{this.props.text}</button>)
         }
       </div>
 
