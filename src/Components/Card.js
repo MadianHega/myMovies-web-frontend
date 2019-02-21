@@ -36,8 +36,26 @@ class Card extends Component {
             console.log('request failed :', error)
             this.setState({error: true});
           })
-      }
-    }
+      } else if(this.state.like === true) {
+          fetch('http://127.0.0.1:3000/dislike', {
+              method: 'PUT',
+              headers: {'Content-Type':'application/x-www-form-urlencoded'},
+              body: 'userId=' + this.props.userLogin.id + '&movieId=' + id
+            })
+            .then((response) => response.json())
+            .then((data) => {
+              if(data.dislikeSucces === true) {
+                this.setState({like: !this.state.like})
+              } else {
+                this.setState({error: true});
+              }
+            })
+            .catch((error) => {
+              console.log('request failed :', error)
+              this.setState({error: true});
+            })
+       }
+     }
   }
 
   render() {
